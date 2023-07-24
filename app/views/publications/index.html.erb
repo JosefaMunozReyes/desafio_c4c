@@ -1,0 +1,25 @@
+
+
+<div class="container titulo">
+<h1>PubliCATciones <span><i class="fa-solid fa-cat me-2" ></i></span></h1>
+</div>
+
+
+<div id="publications">
+  <% @publications.each do |publication| %>
+     <div class="card">
+        <div class="card-body border-star-2 border border-black rounded-2">
+          <%= render publication %>
+         <p>
+          <%= link_to "Ver más", publication, class:"btn btn-dark btn-sm"%><span><i class="fa-solid fa-cat ms-auto"></i></span>
+        </p>
+        
+        </div>
+     </div>
+              
+    
+  <% end %>
+
+</div>
+
+<%= link_to "Nueva Publicacion", new_publication_path, class:"btn btn-dark btn-sm" %>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
+  <div class="container-fluid texto">
+    <i class="fa-solid fa-cat me-2" ></i>
+    <%= link_to "Crazy 4 Cats", root_path, class:"nav-link active" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse me-auto" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "Publicaciones", publications_path, class:"nav-link active" %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if user_signed_in? %>
+              Hola, <%= current_user.email%>   
+            <% else %>
+              Debes Registrate para conectarte
+            <% end %>
+          </a>
+          <ul class="dropdown-menu">
+            <% if user_signed_in? %>
+              <li><%= button_to "Cerrar Sesion", destroy_user_session_path, class:"dropdown-item", method: :delete %></li>
+            <% end %>
+            <li><%= link_to "Iniciar Sesion", new_user_session_path, class:"dropdown-item" %></li>
+            <li><%= link_to "Registro", new_user_registration_path, class:"dropdown-item" %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+<div class="container mt-5">
+<div class="card">
+  <div class="card-body border-star-2 border border-black rounded-2">
+    <%= render @publication %>
+    <div class="d-flex">
+      <%= link_to "Editar", edit_publication_path(@publication), class:"btn btn-dark btn-sm me-2" %>
+      <%= link_to "Volver", publications_path, class:"btn btn-dark btn-sm me-2" %>      
+      <%= button_to "Eliminar esta publicación", @publication, method: :delete, class:"btn btn-dark btn-sm" %>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="d-flex">
+  <% if user_signed_in? %>
+    <% Publication.kinds.each do |kind| %>
+      <% if kind == 'like' %>
+        <%= button_to "#{kind}", new_user_reaction_path(publication_id: @publication.id, reaction_type: "publication", kind: kind), method: :post, class:"btn btn-dark btn-sm" %><i class="fa-regular fa-thumbs-up" width="8px"></i>
+      <% else %>
+        <%= button_to "#{kind}", new_user_reaction_path(publication_id: @publication.id, reaction_type: "publication", kind: kind), method: :post, class:"btn btn-dark btn-sm" %><i class="fa-regular fa-thumbs-down" width="8px"></i>
+      <% end %>    
+    <% end %>
+  <% end %>
+</div>
+ 
+  
+  <div class="card">
+    <div class="card-body border-star-2 border border-black rounded-2">
+      <%= render 'comments/publication_comment' %>
+    
+      <%= render 'comments/form' %> 
+    </div>
+  </div>
+  
+</div>
+</div>
+
